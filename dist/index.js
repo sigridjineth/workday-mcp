@@ -3,14 +3,18 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { CallToolRequestSchema, ListToolsRequestSchema, } from '@modelcontextprotocol/sdk/types.js';
 import { WorkdayClient } from './client.js';
 const WORKDAY_BASE_URL = process.env.WORKDAY_BASE_URL || '';
-const WORKDAY_AUTH_TOKEN = process.env.WORKDAY_AUTH_TOKEN || '';
-if (!WORKDAY_BASE_URL || !WORKDAY_AUTH_TOKEN) {
-    console.error('Missing required environment variables: WORKDAY_BASE_URL, WORKDAY_AUTH_TOKEN');
+const WORKDAY_TENANT = process.env.WORKDAY_TENANT || '';
+const WORKDAY_COOKIE = process.env.WORKDAY_COOKIE || '';
+const WORKDAY_SESSION_SECURE_TOKEN = process.env.WORKDAY_SESSION_SECURE_TOKEN || '';
+if (!WORKDAY_BASE_URL || !WORKDAY_TENANT || !WORKDAY_COOKIE || !WORKDAY_SESSION_SECURE_TOKEN) {
+    console.error('Missing required environment variables: WORKDAY_BASE_URL, WORKDAY_TENANT, WORKDAY_COOKIE, WORKDAY_SESSION_SECURE_TOKEN');
     process.exit(1);
 }
 const config = {
     baseUrl: WORKDAY_BASE_URL,
-    authToken: WORKDAY_AUTH_TOKEN,
+    tenant: WORKDAY_TENANT,
+    cookie: WORKDAY_COOKIE,
+    sessionSecureToken: WORKDAY_SESSION_SECURE_TOKEN,
 };
 const client = new WorkdayClient(config);
 const tools = [

@@ -11,10 +11,11 @@ export class WorkdayClient {
   private async request<T>(path: string): Promise<T | WorkdayError> {
     try {
       const response = await fetch(`${this.config.baseUrl}${path}`, {
-        headers: {
-          'Authorization': `Bearer ${this.config.authToken}`,
-          'Accept': 'application/json',
-        },
+      headers: {
+        'Cookie': `workday_cookie=${this.config.cookie}; session_secure_token=${this.config.sessionSecureToken}`,
+        'Accept': 'application/json',
+        'X-Workday-Tenant': this.config.tenant,
+      },
       });
 
       if (!response.ok) {

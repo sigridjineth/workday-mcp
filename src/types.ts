@@ -1,6 +1,8 @@
 export interface WorkdayConfig {
   baseUrl: string;
-  authToken: string;
+  tenant: string;
+  cookie: string;
+  sessionSecureToken: string;
 }
 
 export interface WorkdayError {
