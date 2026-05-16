@@ -1,7 +1,7 @@
 {
-  "pid": 3699858,
-  "parent_pid": 3699841,
-  "started_at": "2026-05-16T17:56:30.382Z",
+  "pid": 3700057,
+  "parent_pid": 3700040,
+  "started_at": "2026-05-16T17:56:37.504Z",
   "cwd": "/home/mconcat/work/ubc-workday-mcp",
   "notify_script": "/home/mconcat/.nvm/versions/node/v22.22.2/lib/node_modules/oh-my-codex/dist/scripts/notify-hook.js",
   "authority_only": false,
@@ -15,9 +15,9 @@
   "dispatch_drain": {
     "enabled": true,
     "max_per_tick": 5,
-    "run_count": 1,
+    "run_count": 39,
     "leader_only": true,
-    "last_tick_at": "2026-05-16T17:56:30.385Z",
+    "last_tick_at": "2026-05-16T17:57:16.016Z",
     "last_result": {
       "processed": 0,
       "skipped": 0,
@@ -30,16 +30,16 @@
     "leader_only": true,
     "stale_threshold_ms": 180000,
     "precomputed_leader_stale": false,
-    "last_tick_at": "2026-05-16T17:56:30.385Z",
+    "last_tick_at": "2026-05-16T17:57:16.016Z",
     "last_error": null,
-    "run_count": 1
+    "run_count": 39
   },
   "ralph_continue_steer": {
     "enabled": true,
     "cadence_ms": 60000,
     "message": "Ralph loop active continue",
     "active": false,
-    "last_state_check_at": "2026-05-16T17:56:30.391Z",
+    "last_state_check_at": "2026-05-16T17:57:16.020Z",
     "last_sent_at": "",
     "cooldown_anchor_at": "",
     "last_reason": "blocked_by_current_session",
@@ -57,11 +57,11 @@
   "fallback_auto_nudge": {
     "enabled": true,
     "stall_ms": 5000,
-    "last_tick_at": "2026-05-16T17:56:30.390Z",
-    "last_turn_at": "2026-05-16T17:56:30.338Z",
-    "last_turn_count": 0,
-    "last_message": "",
-    "last_reason": "hud_state_incomplete",
+    "last_tick_at": "2026-05-16T17:57:16.018Z",
+    "last_turn_at": "2026-05-16T17:57:15.956Z",
+    "last_turn_count": 1,
+    "last_message": "차단되었습니다. 현재 실행 환경에서 파일 읽기/쓰기 및 검증 명령이 모두 실패합니다.\n\n증거:\n- `ls`, `sed`, `omx explore` 모두 즉시 실패:\n  - `bwr",
+    "last_reason": "recent_turn_activity",
     "last_error": null,
     "last_nudged_signature": "",
     "last_nudged_at": ""
@@ -79,10 +79,10 @@
     "base_ms": 250,
     "max_ms": 1000,
     "current_ms": 1000,
-    "idle_streak": 4,
-    "last_tick_at": "2026-05-16T17:56:30.391Z",
+    "idle_streak": 43,
+    "last_tick_at": "2026-05-16T17:57:16.020Z",
     "last_activity_at": null,
-    "last_activity_reason": "hud_state_incomplete"
+    "last_activity_reason": "recent_turn_activity"
   },
   "stop_reason": "signal",
   "stop_signal": "SIGTERM",

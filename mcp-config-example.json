@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "ubc-workday": {
+      "command": "node",
+      "args": [
+        "/home/mconcat/work/ubc-workday-mcp/dist/index.js"
+      ],
+      "env": {
+        "WORKDAY_BASE_URL": "https://wd10.myworkday.com",
+        "WORKDAY_SESSION_TOKEN": "<your-session-secure-token-from-har>",
+        "WORKDAY_JSESSIONID": "<your-jsessionid-from-har>",
+        "WORKDAY_BROWSER_ID": "<your-wd-browser-id-from-har>",
+        "WORKDAY_ALT_SESSIONID": "<your-wd-alt-sessionid-from-har>"
+      }
+    }
+  }
+}
