@@ -45,3 +45,28 @@ export interface SavedSchedule {
   name: string;
   sections: string[];
 }
+
+export interface FeatureToggle {
+  name: string;
+  enabled: boolean;
+}
+
+export interface SchedulePayload {
+  name: string;
+  sections: string[];
+  payload: Record<string, unknown>;
+}
+
+export interface ValidationResult {
+  valid: boolean;
+  conflicts: string[];
+  warnings: string[];
+}
+
+export interface PlanCandidate {
+  courseId: string;
+  courseCode: string;
+  courseTitle: string;
+  recommendedSections: string[];
+  reason: string;
+}

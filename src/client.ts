@@ -1,4 +1,4 @@
-import { WorkdayConfig, Profile, CourseSection, Course, GradingBasis, SavedSchedule, WorkdayError } from './types.js';
+import { WorkdayConfig, Profile, CourseSection, Course, GradingBasis, SavedSchedule, FeatureToggle, ValidationResult, WorkdayError } from './types.js';
 import { mapHttpError, mapSchemaDriftError, mapLoginHtmlError } from './errors.js';
 
 export class WorkdayClient {
@@ -67,5 +67,13 @@ export class WorkdayClient {
 
   async getSavedSchedules(): Promise<SavedSchedule[] | WorkdayError> {
     return this.request<SavedSchedule[]>('/api/schedules');
+  }
+
+  async getFeatureToggles(): Promise<FeatureToggle[] | WorkdayError> {
+    return this.request<FeatureToggle[]>('/api/feature-toggles');
+  }
+
+  async validateSavedSchedule(scheduleId: string): Promise<ValidationResult | WorkdayError> {
+    return this.request<ValidationResult>(`/api/schedules/${encodeURIComponent(scheduleId)}/validate`);
   }
 }

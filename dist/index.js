@@ -86,6 +86,61 @@ const tools = [
             properties: {},
         },
     },
+    {
+        name: 'workday_get_feature_toggles',
+        description: 'Get feature toggles from Workday',
+        inputSchema: {
+            type: 'object',
+            properties: {},
+        },
+    },
+    {
+        name: 'workday_build_saved_schedule_payload',
+        description: 'Build a saved schedule payload locally (no network call)',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                name: {
+                    type: 'string',
+                    description: 'Schedule name',
+                },
+                sections: {
+                    type: 'array',
+                    items: { type: 'string' },
+                    description: 'List of course section IDs',
+                },
+            },
+            required: ['name', 'sections'],
+        },
+    },
+    {
+        name: 'workday_validate_saved_schedule',
+        description: 'Validate a saved schedule (validate-only, no create/update)',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                scheduleId: {
+                    type: 'string',
+                    description: 'Schedule ID to validate',
+                },
+            },
+            required: ['scheduleId'],
+        },
+    },
+    {
+        name: 'workday_plan_online_schedule',
+        description: 'Plan an online schedule based on search results (read-only recommendation)',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                query: {
+                    type: 'string',
+                    description: 'Course search query',
+                },
+            },
+            required: ['query'],
+        },
+    },
 ];
 const server = new Server({
     name: 'ubc-workday-mcp',
@@ -121,6 +176,42 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             case 'workday_get_saved_schedules':
                 result = await client.getSavedSchedules();
                 break;
+            case 'workday_get_feature_toggles':
+                result = await client.getFeatureToggles();
+                break;
+            case 'workday_build_saved_schedule_payload': {
+                const { name, sections } = args;
+                result = {
+                    name,
+                    sections,
+                    payload: {
+                        name,
+                        sectionIds: sections,
+                        createdAt: new Date().toISOString(),
+                    },
+                };
+                break;
+            }
+            case 'workday_validate_saved_schedule':
+                result = await client.validateSavedSchedule(args.scheduleId);
+                break;
+            case 'workday_plan_online_schedule': {
+                const searchResult = await client.searchCourseSections(args.query);
+                if (searchResult && typeof searchResult === 'object' && 'code' in searchResult) {
+                    result = searchResult;
+                }
+                else {
+                    const sections = searchResult;
+                    result = sections.slice(0, 3).map((section) => ({
+                        courseId: section.courseId,
+                        courseCode: section.section,
+                        courseTitle: section.instructor,
+                        recommendedSections: [section.id],
+                        reason: `Section ${section.section} with ${section.enrolled}/${section.capacity} enrolled`,
+                    }));
+                }
+                break;
+            }
             default:
                 return {
                     content: [

@@ -151,12 +151,6 @@ export declare const SavedSchedulePayloadSchema: z.ZodObject<{
     }>, "many">>;
 }, "strip", z.ZodTypeAny, {
     name: string;
-    academicPeriod: {
-        id: string;
-    };
-    academicRecord: {
-        id: string;
-    };
     items: {
         academicPeriod: {
             id: string;
@@ -172,6 +166,12 @@ export declare const SavedSchedulePayloadSchema: z.ZodObject<{
             id: string;
         } | undefined;
     }[];
+    academicPeriod: {
+        id: string;
+    };
+    academicRecord: {
+        id: string;
+    };
     unavailableTimes?: {
         name: "Unavailable";
         daysOfTheWeek: string[];
@@ -180,12 +180,6 @@ export declare const SavedSchedulePayloadSchema: z.ZodObject<{
     }[] | undefined;
 }, {
     name: string;
-    academicPeriod: {
-        id: string;
-    };
-    academicRecord: {
-        id: string;
-    };
     items: {
         academicPeriod: {
             id: string;
@@ -201,6 +195,12 @@ export declare const SavedSchedulePayloadSchema: z.ZodObject<{
             id: string;
         } | undefined;
     }[];
+    academicPeriod: {
+        id: string;
+    };
+    academicRecord: {
+        id: string;
+    };
     unavailableTimes?: {
         name: "Unavailable";
         daysOfTheWeek: string[];
@@ -302,12 +302,6 @@ export declare const ValidateSavedScheduleCreateInput: z.ZodObject<{
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         name: string;
-        academicPeriod: {
-            id: string;
-        };
-        academicRecord: {
-            id: string;
-        };
         items: {
             academicPeriod: {
                 id: string;
@@ -323,6 +317,12 @@ export declare const ValidateSavedScheduleCreateInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
+        academicPeriod: {
+            id: string;
+        };
+        academicRecord: {
+            id: string;
+        };
         unavailableTimes?: {
             name: "Unavailable";
             daysOfTheWeek: string[];
@@ -331,12 +331,6 @@ export declare const ValidateSavedScheduleCreateInput: z.ZodObject<{
         }[] | undefined;
     }, {
         name: string;
-        academicPeriod: {
-            id: string;
-        };
-        academicRecord: {
-            id: string;
-        };
         items: {
             academicPeriod: {
                 id: string;
@@ -352,6 +346,12 @@ export declare const ValidateSavedScheduleCreateInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
+        academicPeriod: {
+            id: string;
+        };
+        academicRecord: {
+            id: string;
+        };
         unavailableTimes?: {
             name: "Unavailable";
             daysOfTheWeek: string[];
@@ -362,12 +362,6 @@ export declare const ValidateSavedScheduleCreateInput: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     payload: {
         name: string;
-        academicPeriod: {
-            id: string;
-        };
-        academicRecord: {
-            id: string;
-        };
         items: {
             academicPeriod: {
                 id: string;
@@ -383,6 +377,12 @@ export declare const ValidateSavedScheduleCreateInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
+        academicPeriod: {
+            id: string;
+        };
+        academicRecord: {
+            id: string;
+        };
         unavailableTimes?: {
             name: "Unavailable";
             daysOfTheWeek: string[];
@@ -393,12 +393,6 @@ export declare const ValidateSavedScheduleCreateInput: z.ZodObject<{
 }, {
     payload: {
         name: string;
-        academicPeriod: {
-            id: string;
-        };
-        academicRecord: {
-            id: string;
-        };
         items: {
             academicPeriod: {
                 id: string;
@@ -414,6 +408,12 @@ export declare const ValidateSavedScheduleCreateInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
+        academicPeriod: {
+            id: string;
+        };
+        academicRecord: {
+            id: string;
+        };
         unavailableTimes?: {
             name: "Unavailable";
             daysOfTheWeek: string[];
@@ -517,12 +517,6 @@ export declare const CreateSavedScheduleInput: z.ZodObject<{
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         name: string;
-        academicPeriod: {
-            id: string;
-        };
-        academicRecord: {
-            id: string;
-        };
         items: {
             academicPeriod: {
                 id: string;
@@ -538,6 +532,12 @@ export declare const CreateSavedScheduleInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
+        academicPeriod: {
+            id: string;
+        };
+        academicRecord: {
+            id: string;
+        };
         unavailableTimes?: {
             name: "Unavailable";
             daysOfTheWeek: string[];
@@ -546,12 +546,6 @@ export declare const CreateSavedScheduleInput: z.ZodObject<{
         }[] | undefined;
     }, {
         name: string;
-        academicPeriod: {
-            id: string;
-        };
-        academicRecord: {
-            id: string;
-        };
         items: {
             academicPeriod: {
                 id: string;
@@ -567,6 +561,12 @@ export declare const CreateSavedScheduleInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
+        academicPeriod: {
+            id: string;
+        };
+        academicRecord: {
+            id: string;
+        };
         unavailableTimes?: {
             name: "Unavailable";
             daysOfTheWeek: string[];
@@ -578,12 +578,6 @@ export declare const CreateSavedScheduleInput: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     payload: {
         name: string;
-        academicPeriod: {
-            id: string;
-        };
-        academicRecord: {
-            id: string;
-        };
         items: {
             academicPeriod: {
                 id: string;
@@ -599,6 +593,12 @@ export declare const CreateSavedScheduleInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
+        academicPeriod: {
+            id: string;
+        };
+        academicRecord: {
+            id: string;
+        };
         unavailableTimes?: {
             name: "Unavailable";
             daysOfTheWeek: string[];
@@ -610,12 +610,6 @@ export declare const CreateSavedScheduleInput: z.ZodObject<{
 }, {
     payload: {
         name: string;
-        academicPeriod: {
-            id: string;
-        };
-        academicRecord: {
-            id: string;
-        };
         items: {
             academicPeriod: {
                 id: string;
@@ -631,6 +625,12 @@ export declare const CreateSavedScheduleInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
+        academicPeriod: {
+            id: string;
+        };
+        academicRecord: {
+            id: string;
+        };
         unavailableTimes?: {
             name: "Unavailable";
             daysOfTheWeek: string[];
@@ -747,12 +747,6 @@ export declare const ValidateSavedScheduleUpdateInput: z.ZodObject<{
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         name: string;
-        academicPeriod: {
-            id: string;
-        };
-        academicRecord: {
-            id: string;
-        };
         items: {
             academicPeriod: {
                 id: string;
@@ -768,6 +762,12 @@ export declare const ValidateSavedScheduleUpdateInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
+        academicPeriod: {
+            id: string;
+        };
+        academicRecord: {
+            id: string;
+        };
         unavailableTimes?: {
             name: "Unavailable";
             daysOfTheWeek: string[];
@@ -776,12 +776,6 @@ export declare const ValidateSavedScheduleUpdateInput: z.ZodObject<{
         }[] | undefined;
     }, {
         name: string;
-        academicPeriod: {
-            id: string;
-        };
-        academicRecord: {
-            id: string;
-        };
         items: {
             academicPeriod: {
                 id: string;
@@ -797,6 +791,12 @@ export declare const ValidateSavedScheduleUpdateInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
+        academicPeriod: {
+            id: string;
+        };
+        academicRecord: {
+            id: string;
+        };
         unavailableTimes?: {
             name: "Unavailable";
             daysOfTheWeek: string[];
@@ -807,12 +807,6 @@ export declare const ValidateSavedScheduleUpdateInput: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     payload: {
         name: string;
-        academicPeriod: {
-            id: string;
-        };
-        academicRecord: {
-            id: string;
-        };
         items: {
             academicPeriod: {
                 id: string;
@@ -828,6 +822,12 @@ export declare const ValidateSavedScheduleUpdateInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
+        academicPeriod: {
+            id: string;
+        };
+        academicRecord: {
+            id: string;
+        };
         unavailableTimes?: {
             name: "Unavailable";
             daysOfTheWeek: string[];
@@ -839,12 +839,6 @@ export declare const ValidateSavedScheduleUpdateInput: z.ZodObject<{
 }, {
     payload: {
         name: string;
-        academicPeriod: {
-            id: string;
-        };
-        academicRecord: {
-            id: string;
-        };
         items: {
             academicPeriod: {
                 id: string;
@@ -860,6 +854,12 @@ export declare const ValidateSavedScheduleUpdateInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
+        academicPeriod: {
+            id: string;
+        };
+        academicRecord: {
+            id: string;
+        };
         unavailableTimes?: {
             name: "Unavailable";
             daysOfTheWeek: string[];
@@ -965,12 +965,6 @@ export declare const UpdateSavedScheduleInput: z.ZodObject<{
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         name: string;
-        academicPeriod: {
-            id: string;
-        };
-        academicRecord: {
-            id: string;
-        };
         items: {
             academicPeriod: {
                 id: string;
@@ -986,6 +980,12 @@ export declare const UpdateSavedScheduleInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
+        academicPeriod: {
+            id: string;
+        };
+        academicRecord: {
+            id: string;
+        };
         unavailableTimes?: {
             name: "Unavailable";
             daysOfTheWeek: string[];
@@ -994,12 +994,6 @@ export declare const UpdateSavedScheduleInput: z.ZodObject<{
         }[] | undefined;
     }, {
         name: string;
-        academicPeriod: {
-            id: string;
-        };
-        academicRecord: {
-            id: string;
-        };
         items: {
             academicPeriod: {
                 id: string;
@@ -1015,6 +1009,12 @@ export declare const UpdateSavedScheduleInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
+        academicPeriod: {
+            id: string;
+        };
+        academicRecord: {
+            id: string;
+        };
         unavailableTimes?: {
             name: "Unavailable";
             daysOfTheWeek: string[];
@@ -1026,12 +1026,6 @@ export declare const UpdateSavedScheduleInput: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     payload: {
         name: string;
-        academicPeriod: {
-            id: string;
-        };
-        academicRecord: {
-            id: string;
-        };
         items: {
             academicPeriod: {
                 id: string;
@@ -1047,6 +1041,12 @@ export declare const UpdateSavedScheduleInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
+        academicPeriod: {
+            id: string;
+        };
+        academicRecord: {
+            id: string;
+        };
         unavailableTimes?: {
             name: "Unavailable";
             daysOfTheWeek: string[];
@@ -1059,12 +1059,6 @@ export declare const UpdateSavedScheduleInput: z.ZodObject<{
 }, {
     payload: {
         name: string;
-        academicPeriod: {
-            id: string;
-        };
-        academicRecord: {
-            id: string;
-        };
         items: {
             academicPeriod: {
                 id: string;
@@ -1080,6 +1074,12 @@ export declare const UpdateSavedScheduleInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
+        academicPeriod: {
+            id: string;
+        };
+        academicRecord: {
+            id: string;
+        };
         unavailableTimes?: {
             name: "Unavailable";
             daysOfTheWeek: string[];

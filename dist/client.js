@@ -56,5 +56,11 @@ export class WorkdayClient {
     async getSavedSchedules() {
         return this.request('/api/schedules');
     }
+    async getFeatureToggles() {
+        return this.request('/api/feature-toggles');
+    }
+    async validateSavedSchedule(scheduleId) {
+        return this.request(`/api/schedules/${encodeURIComponent(scheduleId)}/validate`);
+    }
 }
 //# sourceMappingURL=client.js.map

@@ -1,4 +1,4 @@
-import { WorkdayConfig, Profile, CourseSection, Course, GradingBasis, SavedSchedule, WorkdayError } from './types.js';
+import { WorkdayConfig, Profile, CourseSection, Course, GradingBasis, SavedSchedule, FeatureToggle, ValidationResult, WorkdayError } from './types.js';
 export declare class WorkdayClient {
     private config;
     constructor(config: WorkdayConfig);
@@ -9,5 +9,7 @@ export declare class WorkdayClient {
     getCourse(id: string): Promise<Course | WorkdayError>;
     getGradingBasis(courseId: string): Promise<GradingBasis | WorkdayError>;
     getSavedSchedules(): Promise<SavedSchedule[] | WorkdayError>;
+    getFeatureToggles(): Promise<FeatureToggle[] | WorkdayError>;
+    validateSavedSchedule(scheduleId: string): Promise<ValidationResult | WorkdayError>;
 }
 //# sourceMappingURL=client.d.ts.map
