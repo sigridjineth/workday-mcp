@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "createdAt": "2026-05-16T17:55:28.975Z",
+  "updatedAt": "2026-05-16T17:55:28.975Z",
+  "briefPath": ".omx/ultragoal/brief.md",
+  "goalsPath": ".omx/ultragoal/goals.json",
+  "ledgerPath": ".omx/ultragoal/ledger.jsonl",
+  "goals": [
+    {
+      "id": "G001-ubc-workday-mcp-har-ubc-workday-rest",
+      "title": "UBC Workday MCP 서버 완성 HAR 기술명세에 따라 UBC Workday REST/MCP parity 서버를 완성...",
+      "objective": "UBC Workday MCP 서버 완성 HAR 기술명세에 따라 UBC Workday REST/MCP parity 서버를 완성한다. Read-only 도구, write-gated saved schedule 도구, UI 파싱 도구, 인증 관리, dogfooding 테스트까지 포함.",
+      "status": "pending",
+      "attempt": 0,
+      "createdAt": "2026-05-16T17:55:28.975Z",
+      "updatedAt": "2026-05-16T17:55:28.975Z"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "active": false,
+  "skill": "ralph",
+  "keyword": "",
+  "phase": "starting",
+  "activated_at": "2026-05-16T17:55:44.802Z",
+  "updated_at": "2026-05-16T17:55:44.987Z",
+  "source": "startMode",
+  "active_skills": []
+}
