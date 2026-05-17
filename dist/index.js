@@ -36,7 +36,7 @@ const tools = [
     },
     {
         name: 'workday_search_course_sections',
-        description: 'Search for course sections by query string',
+        description: 'Search for course sections by query string (legacy UI endpoint)',
         inputSchema: {
             type: 'object',
             properties: {
@@ -46,6 +46,50 @@ const tools = [
                 },
             },
             required: ['query'],
+        },
+    },
+    {
+        name: 'workday_get_course_sections',
+        description: 'Get course sections with filters using Protected REST API (HAR spec v1.1)',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                academicPeriodIds: {
+                    type: 'array',
+                    items: { type: 'string' },
+                    description: 'Academic period WIDs (e.g., ["95ed03ede36c100da0e33ef1bc0a0000"] for 2026-27 Winter Term 2 UBC-V)',
+                },
+                academicLevelId: {
+                    type: 'string',
+                    description: 'Academic level WID',
+                },
+                courseId: {
+                    type: 'string',
+                    description: 'Course WID',
+                },
+                view: {
+                    type: 'string',
+                    enum: ['courseSectionSummary', 'savedCourseSection'],
+                    description: 'Response view type',
+                },
+                includeFacets: {
+                    type: 'boolean',
+                    description: 'Include facet information',
+                },
+                facets: {
+                    type: 'string',
+                    enum: ['course'],
+                    description: 'Facet type to include',
+                },
+                limit: {
+                    type: 'number',
+                    description: 'Maximum results (default: 100)',
+                },
+                deliveryModeId: {
+                    type: 'string',
+                    description: 'Delivery mode WID (e.g., "1b158166c696100004bf89394d230078" for Online Learning)',
+                },
+            },
         },
     },
     {
@@ -60,6 +104,39 @@ const tools = [
                 },
             },
             required: ['id'],
+        },
+    },
+    {
+        name: 'workday_get_course_section_detail',
+        description: 'Get course section detail via Protected REST API (HAR spec v1.1)',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                sectionWid: {
+                    type: 'string',
+                    description: 'Course section WID',
+                },
+                view: {
+                    type: 'string',
+                    enum: ['savedCourseSection'],
+                    description: 'Response view type',
+                },
+            },
+            required: ['sectionWid'],
+        },
+    },
+    {
+        name: 'workday_get_course_section_ui_detail',
+        description: 'Get course section UI detail including public notes, meeting patterns, reserved seats, deadlines (HAR spec v1.1)',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                sectionId: {
+                    type: 'string',
+                    description: 'Course section ID',
+                },
+            },
+            required: ['sectionId'],
         },
     },
     {
@@ -156,7 +233,7 @@ const tools = [
 ];
 const server = new Server({
     name: 'ubc-workday-mcp',
-    version: '1.0.0',
+    version: '1.1.0',
 }, {
     capabilities: {
         tools: {},
@@ -176,9 +253,33 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             case 'workday_search_course_sections':
                 result = await client.searchCourseSections(args.query);
                 break;
+            case 'workday_get_course_sections': {
+                const { academicPeriodIds, academicLevelId, courseId, view, includeFacets, facets, limit, deliveryModeId, } = args;
+                result = await client.getCourseSectionsProtected({
+                    academicPeriodIds,
+                    academicLevelId,
+                    courseId,
+                    view,
+                    includeFacets,
+                    facets,
+                    limit,
+                    deliveryModeId,
+                });
+                break;
+            }
             case 'workday_get_course_section':
                 result = await client.getCourseSection(args.id);
                 break;
+            case 'workday_get_course_section_detail': {
+                const { sectionWid, view } = args;
+                result = await client.getCourseSectionDetail(sectionWid, view);
+                break;
+            }
+            case 'workday_get_course_section_ui_detail': {
+                const { sectionId } = args;
+                result = await client.getCourseSectionUIDetail(sectionId);
+                break;
+            }
             case 'workday_get_course':
                 result = await client.getCourse(args.id);
                 break;

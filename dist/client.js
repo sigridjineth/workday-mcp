@@ -55,6 +55,7 @@ export class WorkdayClient {
             };
         }
     }
+    // === Legacy UI endpoint (widget tree parsing) ===
     async getCourseSections(query, options) {
         const endpoint = this.config.searchEndpoint || '/api/course-sections';
         const params = new URLSearchParams();
@@ -68,6 +69,66 @@ export class WorkdayClient {
             return result;
         }
         return this.parseWidgetTree(result);
+    }
+    // === Protected REST API: Course Sections List/Search ===
+    async getCourseSectionsProtected(options) {
+        const params = new URLSearchParams();
+        if (options?.academicPeriodIds) {
+            for (const id of options.academicPeriodIds) {
+                params.append('academicPeriod', id);
+            }
+        }
+        if (options?.academicLevelId) {
+            params.append('academicLevel', options.academicLevelId);
+        }
+        if (options?.courseId) {
+            params.append('course', options.courseId);
+        }
+        if (options?.view) {
+            params.append('view', options.view);
+        }
+        if (options?.includeFacets) {
+            params.append('facets', 'true');
+        }
+        if (options?.facets) {
+            params.append('facets', options.facets);
+        }
+        if (options?.limit) {
+            params.append('limit', String(options.limit));
+        }
+        if (options?.deliveryModeId) {
+            params.append('deliveryMode', options.deliveryModeId);
+        }
+        const queryString = params.toString();
+        const path = `/wday/sirg/protectedapi/studentCurriculum/v2/ubc/courseSections${queryString ? '?' + queryString : ''}`;
+        const result = await this.request(path);
+        if ('code' in result) {
+            return result;
+        }
+        return result;
+    }
+    // === Protected REST API: Course Section Detail ===
+    async getCourseSectionDetail(sectionWid, view) {
+        const params = new URLSearchParams();
+        if (view) {
+            params.append('view', view);
+        }
+        const queryString = params.toString();
+        const path = `/wday/sirg/protectedapi/studentCurriculum/v2/ubc/courseSections/${encodeURIComponent(sectionWid)}${queryString ? '?' + queryString : ''}`;
+        const result = await this.request(path);
+        if ('code' in result) {
+            return result;
+        }
+        return result;
+    }
+    // === UI Detail Parser ===
+    async getCourseSectionUIDetail(sectionId) {
+        const endpoint = this.config.searchEndpoint || '/ubc/inst/1$15194/15194$475871.htmld';
+        const result = await this.request(`${endpoint}?id=${encodeURIComponent(sectionId)}`);
+        if ('code' in result) {
+            return result;
+        }
+        return this.parseUIDetail(result, sectionId);
     }
     async getCourseDetail(sectionId) {
         const result = await this.request(`/api/course-sections/${encodeURIComponent(sectionId)}`);
@@ -100,6 +161,7 @@ export class WorkdayClient {
     async validateSavedSchedule(scheduleId) {
         return this.request(`/api/schedules/${encodeURIComponent(scheduleId)}/validate`);
     }
+    // === Private parsers ===
     parseWidgetTree(data) {
         const debug = {
             totalWidgets: 0,
@@ -133,6 +195,87 @@ export class WorkdayClient {
         return {
             sections,
             debug,
+        };
+    }
+    parseUIDetail(data, sectionId) {
+        const descriptor = this.extractDisplayName(data) || 'Unknown';
+        // Extract public notes from widget tree
+        let publicNotes;
+        const widgets = this.extractWidgets(data);
+        for (const widget of widgets) {
+            if (widget.type === 'publicNotes' || widget.widgetType === 'publicNotes') {
+                publicNotes = typeof widget.value === 'string' ? widget.value : undefined;
+            }
+            if (!publicNotes && widget.fields) {
+                const fields = widget.fields;
+                if (typeof fields.publicNotes === 'string') {
+                    publicNotes = fields.publicNotes;
+                }
+            }
+        }
+        // Extract meeting patterns
+        const meetingPatterns = [];
+        for (const widget of widgets) {
+            if (widget.type === 'meetingPattern' || widget.widgetType === 'meetingPattern') {
+                const mp = widget;
+                if (mp.dayOfWeek && mp.startTime && mp.endTime) {
+                    meetingPatterns.push({
+                        dayOfWeek: String(mp.dayOfWeek),
+                        startTime: String(mp.startTime),
+                        endTime: String(mp.endTime),
+                        location: mp.location ? String(mp.location) : undefined,
+                    });
+                }
+            }
+        }
+        // Extract reserved seats
+        const reservedSeats = [];
+        for (const widget of widgets) {
+            if (widget.type === 'reservedSeat' || widget.widgetType === 'reservedSeat') {
+                const rs = widget;
+                if (rs.description && rs.capacity !== undefined) {
+                    reservedSeats.push({
+                        description: String(rs.description),
+                        capacity: Number(rs.capacity) || 0,
+                        enrolled: Number(rs.enrolled) || 0,
+                    });
+                }
+            }
+        }
+        // Extract deadlines
+        let dropDeadline;
+        let withdrawalDeadline;
+        for (const widget of widgets) {
+            if (widget.type === 'deadline' || widget.widgetType === 'deadline') {
+                const dl = widget;
+                if (dl.type === 'drop') {
+                    dropDeadline = String(dl.date);
+                }
+                else if (dl.type === 'withdrawal') {
+                    withdrawalDeadline = String(dl.date);
+                }
+            }
+        }
+        // Extract waitlist capacity
+        let waitlistCapacity;
+        for (const widget of widgets) {
+            if (widget.type === 'waitlist' || widget.widgetType === 'waitlist') {
+                const wl = widget;
+                if (wl.capacity !== undefined) {
+                    waitlistCapacity = Number(wl.capacity);
+                }
+            }
+        }
+        return {
+            id: sectionId,
+            descriptor,
+            publicNotes,
+            meetingPatterns: meetingPatterns.length > 0 ? meetingPatterns : undefined,
+            reservedSeats: reservedSeats.length > 0 ? reservedSeats : undefined,
+            waitlistCapacity,
+            dropDeadline,
+            withdrawalDeadline,
+            raw: data,
         };
     }
     extractWidgets(value, out = []) {

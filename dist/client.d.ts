@@ -1,4 +1,4 @@
-import { WorkdayConfig, CourseDetail, ValidationResult, CourseSectionsResult, WorkdayError, Profile, CourseSection, Course, GradingBasis, SavedSchedule, FeatureToggle } from './types.js';
+import { WorkdayConfig, CourseDetail, ValidationResult, CourseSectionsResult, WorkdayError, Profile, CourseSection, Course, GradingBasis, SavedSchedule, FeatureToggle, ProtectedCourseSectionsResponse, CourseSectionDetail, CourseSectionUIDetail } from './types.js';
 export declare class WorkdayClient {
     private config;
     constructor(config: WorkdayConfig);
@@ -8,6 +8,18 @@ export declare class WorkdayClient {
         academicPeriod?: string;
         campus?: string;
     }): Promise<CourseSectionsResult | WorkdayError>;
+    getCourseSectionsProtected(options?: {
+        academicPeriodIds?: string[];
+        academicLevelId?: string;
+        courseId?: string;
+        view?: 'courseSectionSummary' | 'savedCourseSection';
+        includeFacets?: boolean;
+        facets?: 'course';
+        limit?: number;
+        deliveryModeId?: string;
+    }): Promise<ProtectedCourseSectionsResponse | WorkdayError>;
+    getCourseSectionDetail(sectionWid: string, view?: 'savedCourseSection'): Promise<CourseSectionDetail | WorkdayError>;
+    getCourseSectionUIDetail(sectionId: string): Promise<CourseSectionUIDetail | WorkdayError>;
     getCourseDetail(sectionId: string): Promise<CourseDetail | WorkdayError>;
     getProfile(): Promise<Profile | WorkdayError>;
     searchCourseSections(query: string): Promise<CourseSection[] | WorkdayError>;
@@ -18,6 +30,7 @@ export declare class WorkdayClient {
     getFeatureToggles(): Promise<FeatureToggle[] | WorkdayError>;
     validateSavedSchedule(scheduleId: string): Promise<ValidationResult | WorkdayError>;
     private parseWidgetTree;
+    private parseUIDetail;
     private extractWidgets;
     private isRecord;
     private looksLikeWidget;

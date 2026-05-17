@@ -7,16 +7,16 @@ export declare const GetCourseSectionsInput: z.ZodObject<{
     facets: z.ZodOptional<z.ZodUnion<[z.ZodBoolean, z.ZodLiteral<"course">]>>;
     limit: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
-    courseId?: string | undefined;
     academicPeriodIds?: string[] | undefined;
     academicLevelId?: string | undefined;
+    courseId?: string | undefined;
     view?: "courseSectionSummary" | "savedCourseSection" | undefined;
     facets?: boolean | "course" | undefined;
     limit?: number | undefined;
 }, {
-    courseId?: string | undefined;
     academicPeriodIds?: string[] | undefined;
     academicLevelId?: string | undefined;
+    courseId?: string | undefined;
     view?: "courseSectionSummary" | "savedCourseSection" | undefined;
     facets?: boolean | "course" | undefined;
     limit?: number | undefined;
