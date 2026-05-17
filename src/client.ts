@@ -26,12 +26,11 @@ export class WorkdayClient {
   }
 
   private getHeaders(): Record<string, string> {
-    return {
+    const headers: Record<string, string> = {
       'Cookie': this.config.cookie,
       'session-secure-token': this.config.sessionSecureToken,
       'Accept': '*/*',
       'Accept-Language': 'en-US,en;q=0.9',
-      'Referer': `${this.config.baseUrl}/`,
       'Origin': this.config.baseUrl,
       'sec-fetch-dest': 'empty',
       'sec-fetch-mode': 'cors',
@@ -39,6 +38,10 @@ export class WorkdayClient {
       'x-workday-client': '2026.20.14',
       'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
     };
+    if (this.config.referer) {
+      headers['Referer'] = this.config.referer;
+    }
+    return headers;
   }
 
   private async request<T>(path: string): Promise<T | WorkdayError> {

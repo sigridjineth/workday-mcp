@@ -6,6 +6,8 @@ const WORKDAY_BASE_URL = process.env.WORKDAY_BASE_URL || '';
 const WORKDAY_TENANT = process.env.WORKDAY_TENANT || '';
 const WORKDAY_COOKIE = process.env.WORKDAY_COOKIE || '';
 const WORKDAY_SESSION_SECURE_TOKEN = process.env.WORKDAY_SESSION_SECURE_TOKEN || '';
+const WORKDAY_SEARCH_ENDPOINT = process.env.WORKDAY_SEARCH_ENDPOINT || '';
+const WORKDAY_REFERER = process.env.WORKDAY_REFERER || '';
 if (!WORKDAY_BASE_URL || !WORKDAY_TENANT || !WORKDAY_COOKIE || !WORKDAY_SESSION_SECURE_TOKEN) {
     console.error('Missing required environment variables: WORKDAY_BASE_URL, WORKDAY_TENANT, WORKDAY_COOKIE, WORKDAY_SESSION_SECURE_TOKEN');
     process.exit(1);
@@ -16,6 +18,12 @@ const config = {
     cookie: WORKDAY_COOKIE,
     sessionSecureToken: WORKDAY_SESSION_SECURE_TOKEN,
 };
+if (WORKDAY_SEARCH_ENDPOINT) {
+    config.searchEndpoint = WORKDAY_SEARCH_ENDPOINT;
+}
+if (WORKDAY_REFERER) {
+    config.referer = WORKDAY_REFERER;
+}
 const client = new WorkdayClient(config);
 const tools = [
     {

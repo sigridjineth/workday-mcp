@@ -5,6 +5,7 @@ export interface WorkdayConfig {
   sessionSecureToken: string;
   searchEndpoint?: string;
   startPath?: string;
+  referer?: string;
 }
 
 export interface WorkdayError {

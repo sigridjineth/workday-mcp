@@ -150,6 +150,9 @@ export declare const SavedSchedulePayloadSchema: z.ZodObject<{
         endTime: string;
     }>, "many">>;
 }, "strip", z.ZodTypeAny, {
+    academicPeriod: {
+        id: string;
+    };
     name: string;
     items: {
         academicPeriod: {
@@ -166,9 +169,6 @@ export declare const SavedSchedulePayloadSchema: z.ZodObject<{
             id: string;
         } | undefined;
     }[];
-    academicPeriod: {
-        id: string;
-    };
     academicRecord: {
         id: string;
     };
@@ -179,6 +179,9 @@ export declare const SavedSchedulePayloadSchema: z.ZodObject<{
         endTime: string;
     }[] | undefined;
 }, {
+    academicPeriod: {
+        id: string;
+    };
     name: string;
     items: {
         academicPeriod: {
@@ -195,9 +198,6 @@ export declare const SavedSchedulePayloadSchema: z.ZodObject<{
             id: string;
         } | undefined;
     }[];
-    academicPeriod: {
-        id: string;
-    };
     academicRecord: {
         id: string;
     };
@@ -301,6 +301,9 @@ export declare const ValidateSavedScheduleCreateInput: z.ZodObject<{
             endTime: string;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
+        academicPeriod: {
+            id: string;
+        };
         name: string;
         items: {
             academicPeriod: {
@@ -317,9 +320,6 @@ export declare const ValidateSavedScheduleCreateInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
-        academicPeriod: {
-            id: string;
-        };
         academicRecord: {
             id: string;
         };
@@ -330,6 +330,9 @@ export declare const ValidateSavedScheduleCreateInput: z.ZodObject<{
             endTime: string;
         }[] | undefined;
     }, {
+        academicPeriod: {
+            id: string;
+        };
         name: string;
         items: {
             academicPeriod: {
@@ -346,9 +349,6 @@ export declare const ValidateSavedScheduleCreateInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
-        academicPeriod: {
-            id: string;
-        };
         academicRecord: {
             id: string;
         };
@@ -361,6 +361,9 @@ export declare const ValidateSavedScheduleCreateInput: z.ZodObject<{
     }>;
 }, "strip", z.ZodTypeAny, {
     payload: {
+        academicPeriod: {
+            id: string;
+        };
         name: string;
         items: {
             academicPeriod: {
@@ -377,9 +380,6 @@ export declare const ValidateSavedScheduleCreateInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
-        academicPeriod: {
-            id: string;
-        };
         academicRecord: {
             id: string;
         };
@@ -392,6 +392,9 @@ export declare const ValidateSavedScheduleCreateInput: z.ZodObject<{
     };
 }, {
     payload: {
+        academicPeriod: {
+            id: string;
+        };
         name: string;
         items: {
             academicPeriod: {
@@ -408,9 +411,6 @@ export declare const ValidateSavedScheduleCreateInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
-        academicPeriod: {
-            id: string;
-        };
         academicRecord: {
             id: string;
         };
@@ -516,6 +516,9 @@ export declare const CreateSavedScheduleInput: z.ZodObject<{
             endTime: string;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
+        academicPeriod: {
+            id: string;
+        };
         name: string;
         items: {
             academicPeriod: {
@@ -532,9 +535,6 @@ export declare const CreateSavedScheduleInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
-        academicPeriod: {
-            id: string;
-        };
         academicRecord: {
             id: string;
         };
@@ -545,6 +545,9 @@ export declare const CreateSavedScheduleInput: z.ZodObject<{
             endTime: string;
         }[] | undefined;
     }, {
+        academicPeriod: {
+            id: string;
+        };
         name: string;
         items: {
             academicPeriod: {
@@ -561,9 +564,6 @@ export declare const CreateSavedScheduleInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
-        academicPeriod: {
-            id: string;
-        };
         academicRecord: {
             id: string;
         };
@@ -577,6 +577,9 @@ export declare const CreateSavedScheduleInput: z.ZodObject<{
     confirmationToken: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     payload: {
+        academicPeriod: {
+            id: string;
+        };
         name: string;
         items: {
             academicPeriod: {
@@ -593,9 +596,6 @@ export declare const CreateSavedScheduleInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
-        academicPeriod: {
-            id: string;
-        };
         academicRecord: {
             id: string;
         };
@@ -609,6 +609,9 @@ export declare const CreateSavedScheduleInput: z.ZodObject<{
     confirmationToken: string;
 }, {
     payload: {
+        academicPeriod: {
+            id: string;
+        };
         name: string;
         items: {
             academicPeriod: {
@@ -625,9 +628,6 @@ export declare const CreateSavedScheduleInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
-        academicPeriod: {
-            id: string;
-        };
         academicRecord: {
             id: string;
         };
@@ -746,6 +746,9 @@ export declare const ValidateSavedScheduleUpdateInput: z.ZodObject<{
             endTime: string;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
+        academicPeriod: {
+            id: string;
+        };
         name: string;
         items: {
             academicPeriod: {
@@ -762,9 +765,6 @@ export declare const ValidateSavedScheduleUpdateInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
-        academicPeriod: {
-            id: string;
-        };
         academicRecord: {
             id: string;
         };
@@ -775,6 +775,9 @@ export declare const ValidateSavedScheduleUpdateInput: z.ZodObject<{
             endTime: string;
         }[] | undefined;
     }, {
+        academicPeriod: {
+            id: string;
+        };
         name: string;
         items: {
             academicPeriod: {
@@ -791,9 +794,6 @@ export declare const ValidateSavedScheduleUpdateInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
-        academicPeriod: {
-            id: string;
-        };
         academicRecord: {
             id: string;
         };
@@ -806,6 +806,9 @@ export declare const ValidateSavedScheduleUpdateInput: z.ZodObject<{
     }>;
 }, "strip", z.ZodTypeAny, {
     payload: {
+        academicPeriod: {
+            id: string;
+        };
         name: string;
         items: {
             academicPeriod: {
@@ -822,9 +825,6 @@ export declare const ValidateSavedScheduleUpdateInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
-        academicPeriod: {
-            id: string;
-        };
         academicRecord: {
             id: string;
         };
@@ -838,6 +838,9 @@ export declare const ValidateSavedScheduleUpdateInput: z.ZodObject<{
     scheduleWid: string;
 }, {
     payload: {
+        academicPeriod: {
+            id: string;
+        };
         name: string;
         items: {
             academicPeriod: {
@@ -854,9 +857,6 @@ export declare const ValidateSavedScheduleUpdateInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
-        academicPeriod: {
-            id: string;
-        };
         academicRecord: {
             id: string;
         };
@@ -964,6 +964,9 @@ export declare const UpdateSavedScheduleInput: z.ZodObject<{
             endTime: string;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
+        academicPeriod: {
+            id: string;
+        };
         name: string;
         items: {
             academicPeriod: {
@@ -980,9 +983,6 @@ export declare const UpdateSavedScheduleInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
-        academicPeriod: {
-            id: string;
-        };
         academicRecord: {
             id: string;
         };
@@ -993,6 +993,9 @@ export declare const UpdateSavedScheduleInput: z.ZodObject<{
             endTime: string;
         }[] | undefined;
     }, {
+        academicPeriod: {
+            id: string;
+        };
         name: string;
         items: {
             academicPeriod: {
@@ -1009,9 +1012,6 @@ export declare const UpdateSavedScheduleInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
-        academicPeriod: {
-            id: string;
-        };
         academicRecord: {
             id: string;
         };
@@ -1025,6 +1025,9 @@ export declare const UpdateSavedScheduleInput: z.ZodObject<{
     confirmationToken: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     payload: {
+        academicPeriod: {
+            id: string;
+        };
         name: string;
         items: {
             academicPeriod: {
@@ -1041,9 +1044,6 @@ export declare const UpdateSavedScheduleInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
-        academicPeriod: {
-            id: string;
-        };
         academicRecord: {
             id: string;
         };
@@ -1058,6 +1058,9 @@ export declare const UpdateSavedScheduleInput: z.ZodObject<{
     scheduleWid: string;
 }, {
     payload: {
+        academicPeriod: {
+            id: string;
+        };
         name: string;
         items: {
             academicPeriod: {
@@ -1074,9 +1077,6 @@ export declare const UpdateSavedScheduleInput: z.ZodObject<{
                 id: string;
             } | undefined;
         }[];
-        academicPeriod: {
-            id: string;
-        };
         academicRecord: {
             id: string;
         };
