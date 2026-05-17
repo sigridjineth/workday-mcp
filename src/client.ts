@@ -115,6 +115,8 @@ export class WorkdayClient {
     facets?: 'course';
     limit?: number;
     deliveryModeId?: string;
+    deliveryModeIds?: string[];
+    offset?: number;
   }): Promise<ProtectedCourseSectionsResponse | WorkdayError> {
     const params = new URLSearchParams();
     
@@ -141,8 +143,16 @@ export class WorkdayClient {
     if (options?.limit) {
       params.append('limit', String(options.limit));
     }
+    if (options?.offset) {
+      params.append('offset', String(options.offset));
+    }
     if (options?.deliveryModeId) {
       params.append('deliveryMode', options.deliveryModeId);
+    }
+    if (options?.deliveryModeIds) {
+      for (const id of options.deliveryModeIds) {
+        params.append('deliveryMode', id);
+      }
     }
 
     const queryString = params.toString();

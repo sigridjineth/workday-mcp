@@ -100,6 +100,15 @@ const tools: Tool[] = [
           type: 'string',
           description: 'Delivery mode WID (e.g., "1b158166c696100004bf89394d230078" for Online Learning)',
         },
+        deliveryModeIds: {
+          type: 'array',
+          items: { type: 'string' },
+          description: 'Multiple delivery mode WIDs for filtering',
+        },
+        offset: {
+          type: 'number',
+          description: 'Pagination offset (default: 0)',
+        },
       },
     },
   },
@@ -281,7 +290,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           includeFacets,
           facets,
           limit,
+          offset,
           deliveryModeId,
+          deliveryModeIds,
         } = args as {
           academicPeriodIds?: string[];
           academicLevelId?: string;
@@ -290,7 +301,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           includeFacets?: boolean;
           facets?: 'course';
           limit?: number;
+          offset?: number;
           deliveryModeId?: string;
+          deliveryModeIds?: string[];
         };
         result = await client.getCourseSectionsProtected({
           academicPeriodIds,
@@ -300,7 +313,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           includeFacets,
           facets,
           limit,
+          offset,
           deliveryModeId,
+          deliveryModeIds,
         });
         break;
       }
